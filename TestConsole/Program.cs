@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using @is.gd;
+using Url = @is.gd.Url;
 
 namespace TestConsole
 {
-    class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace @is.gd
 {
-    public class Url
+    public static class Url
     {
         /// <summary>
         /// https://is.gd/apishorteningreference.php
@@ -21,15 +19,9 @@ namespace @is.gd
         {
             var client = new HttpClient();
             var domain = v ? "v.gd" : "is.gd";
-            string uri;
-            if (logstats)
-            {
-                uri = Uri.EscapeUriString($"https://{domain}/create.php?format=simple&url={url}&logstats=1");
-            }
-            else
-            {
-                uri = Uri.EscapeUriString($"https://{domain}/create.php?format=simple&url={url}");
-            }
+            var uri = Uri.EscapeUriString(logstats
+                ? $"https://{domain}/create.php?format=simple&url={url}&logstats=1"
+                : $"https://{domain}/create.php?format=simple&url={url}");
 
             var responseMessage = await client.GetAsync(uri);
             var response = await responseMessage.Content.ReadAsStringAsync();
